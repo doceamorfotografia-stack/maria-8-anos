@@ -7,23 +7,41 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+  <style>
+    /* Animações personalizadas */
+    .fade-in {
+      animation: fadeIn 0.3s ease forwards;
+    }
+    .fade-out {
+      animation: fadeOut 0.3s ease forwards;
+    }
+    @keyframes fadeIn {
+      0% {opacity:0; transform: scale(0.95);}
+      100% {opacity:1; transform: scale(1);}
+    }
+    @keyframes fadeOut {
+      0% {opacity:1; transform: scale(1);}
+      100% {opacity:0; transform: scale(0.95);}
+    }
+  </style>
 </head>
-<body class="bg-gray-50 font-sans">
+<body class="bg-blue-50 font-sans">
 
   <!-- Cabeçalho -->
   <header class="relative w-full h-56 sm:h-64 md:h-80 overflow-hidden">
-    <img src="fotos/Maria-8-anos-002.jpg" alt="Capa" class="w-full h-full object-cover"/>
+    <img src="fotos/baixa/Maria-8-anos-002.jpg" alt="Capa" class="w-full h-full object-cover"/>
     <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center px-4">
       <h1 class="text-white text-2xl sm:text-3xl md:text-5xl font-bold text-center">Maria 8 anos</h1>
     </div>
   </header>
 
   <!-- Botão baixar todas -->
-  <div class="container mx-auto px-4 py-6 text-center">
-    <button onclick="downloadAll()" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">
-      📥 Baixar Todas as Fotos
-    </button>
-  </div>
+    <div class="container mx-auto px-4 py-6 flex justify-center">
+      <button onclick="downloadAll()" 
+              class="flex items-center justify-center gap-2 bg-white/30 backdrop-blur-sm border border-white/50 text-blue-400 text-sm px-4 py-2 rounded-lg shadow hover:bg-white/40 transition transform hover:scale-105">
+        📥 Download de Todas as Fotos
+      </button>
+    </div>
 
   <!-- Galeria -->
   <main class="container mx-auto px-4 pb-10">
@@ -31,88 +49,164 @@
   </main>
 
   <!-- Lightbox -->
-  <div id="lightbox" class="hidden fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-2">
-    <button onclick="closeLightbox()" class="absolute top-2 md:top-5 right-2 md:right-5 text-white text-2xl md:text-3xl font-bold">×</button>
-    <button onclick="prevImage()" class="absolute left-2 md:left-5 text-white text-3xl md:text-4xl font-bold">❮</button>
-    <img id="lightbox-img" src="" alt="Foto em alta resolução" class="max-w-full max-h-full rounded-lg shadow-lg object-contain"/>
-    <button onclick="nextImage()" class="absolute right-2 md:right-5 text-white text-3xl md:text-4xl font-bold">❯</button>
+<div id="lightbox" class="hidden fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-2">
+  <div class="relative fade-in w-full max-w-4xl flex justify-center items-center">
+    <button onclick="closeLightbox()" class="absolute top-2 md:top-5 right-2 md:right-5 text-white text-2xl md:text-3xl font-bold hover:text-gray-300 transition">×</button>
+    <button onclick="prevImage()" class="absolute left-2 md:left-5 text-white text-3xl md:text-4xl font-bold hover:text-gray-300 transition">❮</button>
+    <img id="lightbox-img" src="" alt="Foto em alta resolução" class="max-w-full max-h-[80vh] rounded-lg shadow-lg object-contain transition-transform duration-300"/>
+    
+    <!-- Botões de download com estilo glass -->
+    <div class="absolute bottom-4 flex space-x-3">
+      <button onclick="downloadLightbox('baixa')" 
+              class="flex items-center justify-center gap-1 bg-blue-600/30 backdrop-blur-sm border border-white/50 text-white text-xs px-3 py-1 rounded shadow hover:bg-blue-600/40 transition">
+        Baixa Resolução
+      </button>
+      <button onclick="downloadLightbox('alta')" 
+              class="flex items-center justify-center gap-1 bg-green-600/30 backdrop-blur-sm border border-white/50 text-white text-xs px-3 py-1 rounded shadow hover:bg-green-600/40 transition">
+        Alta Resolução
+      </button>
+    </div>
+
+    <button onclick="nextImage()" class="absolute right-2 md:right-5 text-white text-3xl md:text-4xl font-bold hover:text-gray-300 transition">❯</button>
   </div>
+</div>
+
+  <!-- Modal de escolha de resolução -->
+<div id="resolution-modal" class="hidden fixed inset-0 flex items-center justify-center z-50 p-4">
+  <!-- Fundo semi-transparente com blur -->
+  <div class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+
+  <!-- Conteúdo do modal -->
+  <div class="relative bg-white/50 backdrop-blur-lg rounded-xl p-4 text-center space-y-3 max-w-xs w-full shadow-lg fade-in">
+    <h2 class="text-base font-semibold text-white">Escolha a resolução</h2>
+    <div class="flex justify-around">
+      <button id="btn-baixa" class="flex items-center justify-center gap-1 bg-blue-600/30 backdrop-blur-sm border border-white/50 text-white text-xs px-3 py-1 rounded shadow hover:bg-blue-600/40 transition">
+        Baixa Resolução
+      </button>
+      <button id="btn-alta" class="flex items-center justify-center gap-1 bg-green-600/30 backdrop-blur-sm border border-white/50 text-white text-xs px-3 py-1 rounded shadow hover:bg-green-600/40 transition">
+        Alta Resolução
+      </button>
+    </div>
+    <button onclick="closeResolutionModal()" class="mt-1 text-white text-xs hover:text-gray-200 transition">Cancelar</button>
+  </div>
+</div>
+
 
   <script>
     const images = [
-      { thumb: "fotos/Maria-8-anos-001.jpg", full: "fotos/Maria-8-anos-001.jpg", name: "Maria-8-anos-001.jpg" },
-      { thumb: "fotos/Maria-8-anos-002.jpg", full: "fotos/Maria-8-anos-002.jpg", name: "Maria-8-anos-002.jpg" },
-      { thumb: "fotos/Maria-8-anos-003.jpg", full: "fotos/Maria-8-anos-003.jpg", name: "Maria-8-anos-003.jpg" },
-      { thumb: "fotos/Maria-8-anos-004.jpg", full: "fotos/Maria-8-anos-004.jpg", name: "Maria-8-anos-004.jpg" },
-      { thumb: "fotos/Maria-8-anos-005.jpg", full: "fotos/Maria-8-anos-005.jpg", name: "Maria-8-anos-005.jpg" },
-      { thumb: "fotos/Maria-8-anos-006.jpg", full: "fotos/Maria-8-anos-006.jpg", name: "Maria-8-anos-006.jpg" }
+      { name: "Maria-8-anos-001.jpg" },
+      { name: "Maria-8-anos-002.jpg" },
+      { name: "Maria-8-anos-003.jpg" },
+      { name: "Maria-8-anos-004.jpg" },
+      { name: "Maria-8-anos-005.jpg" },
+      { name: "Maria-8-anos-006.jpg" }
     ];
 
     const gallery = document.getElementById("gallery");
     let currentIndex = 0;
 
-    // Criar galeria
-    images.forEach((img, i) => {
-      const div = document.createElement("div");
-      div.className = "relative group border rounded-lg overflow-hidden shadow cursor-pointer";
+    // Criar galeria com hover animado
+images.forEach((img, i) => {
+  const div = document.createElement("div");
+  div.className = "relative group border rounded-lg overflow-hidden shadow cursor-pointer transition-transform hover:scale-105";
 
-      div.innerHTML = `
-        <img src="${img.thumb}" alt="Foto ${i+1}" 
-             class="w-full h-48 sm:h-56 md:h-60 object-cover group-hover:scale-105 transition-transform duration-300"/>
-        <div class="absolute bottom-2 right-2">
-          <button onclick="event.stopPropagation(); downloadImage('${img.full}', '${img.name}')" 
-             class="bg-white text-blue-600 px-3 py-1 text-xs sm:text-sm rounded shadow hover:bg-gray-100">
-             Baixar
-          </button>
-        </div>
-      `;
+  div.innerHTML = `
+    <img src="fotos/baixa/${img.name}" alt="Foto ${i+1}" 
+         class="w-full h-48 sm:h-56 md:h-60 object-cover group-hover:scale-105 transition-transform duration-300"/>
+    <div class="absolute bottom-2 right-2">
+      <button onclick="event.stopPropagation(); openResolutionModal(${i})" 
+          class="flex items-center justify-center gap-1 bg-white/30 backdrop-blur-sm border border-white/50 text-white text-xs px-2 py-1 rounded shadow hover:bg-white/40 transition">
+        Download
+      </button>
+    </div>
+  `;
+  div.addEventListener("click", () => openLightbox(i));
+  gallery.appendChild(div);
+});
 
-      div.addEventListener("click", () => openLightbox(i));
-      gallery.appendChild(div);
-    });
 
-    // Abrir lightbox
+    // Lightbox
     function openLightbox(index) {
       currentIndex = index;
-      document.getElementById("lightbox-img").src = images[currentIndex].full;
+      document.getElementById("lightbox-img").src = `fotos/alta/${images[currentIndex].name}`;
       document.getElementById("lightbox").classList.remove("hidden");
     }
-
     function closeLightbox() {
-      document.getElementById("lightbox").classList.add("hidden");
-      document.getElementById("lightbox-img").src = "";
+      const lb = document.getElementById("lightbox");
+      lb.classList.add("fade-out");
+      setTimeout(() => {
+        lb.classList.add("hidden");
+        lb.classList.remove("fade-in","fade-out");
+        document.getElementById("lightbox-img").src = "";
+      }, 300);
     }
-
     function prevImage() {
       currentIndex = (currentIndex - 1 + images.length) % images.length;
-      document.getElementById("lightbox-img").src = images[currentIndex].full;
+      document.getElementById("lightbox-img").src = `fotos/alta/${images[currentIndex].name}`;
     }
-
     function nextImage() {
       currentIndex = (currentIndex + 1) % images.length;
-      document.getElementById("lightbox-img").src = images[currentIndex].full;
+      document.getElementById("lightbox-img").src = `fotos/alta/${images[currentIndex].name}`;
     }
 
+    // Modal de resolução
+    function openResolutionModal(index) {
+      currentIndex = index;
+      const modal = document.getElementById("resolution-modal");
+      modal.classList.remove("hidden");
+      modal.classList.add("fade-in");
+    }
+    function closeResolutionModal() {
+      const modal = document.getElementById("resolution-modal");
+      modal.classList.add("fade-out");
+      setTimeout(() => {
+        modal.classList.add("hidden");
+        modal.classList.remove("fade-in","fade-out");
+      }, 300);
+    }
+
+    document.getElementById("btn-baixa").addEventListener("click", () => {
+      downloadImage(`fotos/baixa/${images[currentIndex].name}`, images[currentIndex].name);
+      closeResolutionModal();
+    });
+    document.getElementById("btn-alta").addEventListener("click", () => {
+      downloadImage(`fotos/alta/${images[currentIndex].name}`, images[currentIndex].name);
+      closeResolutionModal();
+    });
+
+    // Download lightbox
+    function downloadLightbox(resolution) {
+      const folder = resolution === 'alta' ? 'alta' : 'baixa';
+      const filename = images[currentIndex].name;
+      const url = `fotos/${folder}/${filename}`;
+      downloadImage(url, filename);
+    }
+
+    // Download unitário
     function downloadImage(url, filename) {
       fetch(url)
         .then(res => res.blob())
-        .then(blob => {
-          saveAs(blob, filename);
-        });
+        .then(blob => saveAs(blob, filename));
     }
 
+    // Download todas em ZIP
     async function downloadAll() {
       const zip = new JSZip();
-      const folder = zip.folder("galeria");
+      const folderBaixa = zip.folder("baixa");
+      const folderAlta = zip.folder("alta");
 
       for (let i = 0; i < images.length; i++) {
-        const response = await fetch(images[i].full);
-        const blob = await response.blob();
-        folder.file(images[i].name, blob);
+        const resBaixa = await fetch(`fotos/baixa/${images[i].name}`);
+        const blobBaixa = await resBaixa.blob();
+        folderBaixa.file(images[i].name, blobBaixa);
+
+        const resAlta = await fetch(`fotos/alta/${images[i].name}`);
+        const blobAlta = await resAlta.blob();
+        folderAlta.file(images[i].name, blobAlta);
       }
 
       const content = await zip.generateAsync({ type: "blob" });
-      saveAs(content, "Maria-8-anos.zip");
+      saveAs(content, "galeria-completa.zip");
     }
   </script>
 
