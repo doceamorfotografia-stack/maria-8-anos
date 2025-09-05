@@ -9,12 +9,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
   <style>
     /* Animações personalizadas */
-    .fade-in {
-      animation: fadeIn 0.3s ease forwards;
-    }
-    .fade-out {
-      animation: fadeOut 0.3s ease forwards;
-    }
+    .fade-in { animation: fadeIn 0.3s ease forwards; }
+    .fade-out { animation: fadeOut 0.3s ease forwards; }
     @keyframes fadeIn {
       0% {opacity:0; transform: scale(0.95);}
       100% {opacity:1; transform: scale(1);}
@@ -29,7 +25,7 @@
 
   <!-- Cabeçalho -->
   <header class="relative w-full h-56 sm:h-64 md:h-80 overflow-hidden">
-    <img src="fotos/baixa/Maria-8-anos-002.jpg" alt="Capa" class="w-full h-full object-cover"/>
+    <img src="https://doceamorfotografia.s3.sa-east-1.amazonaws.com/maria-8-anos/baixa/Maria-8-anos-002.jpg" alt="Capa" class="w-full h-full object-cover"/>
     <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center px-4">
       <h1 class="text-white text-2xl sm:text-3xl md:text-5xl font-bold text-center">Maria 8 anos</h1>
     </div>
@@ -37,64 +33,49 @@
 
   <!-- logo -->
   <div class="container mx-auto px-4 py-6 flex justify-center">
-    <img src="logo.png" alt="Logo" class="mt-4 w-32 sm:w-40 md:w-48 lg:w-56 object-contain">
+    <img src="logo.png" alt="Logo" class="mt-4 w-48 sm:w-64 md:w-72 lg:w-80 object-contain">
   </div>
 
   <!-- Botões de ação -->
-    <div class="container mx-auto px-4 py-6 flex justify-center gap-4">
-      <!-- Download todas as fotos -->
-      <button onclick="downloadAll()" 
-              class="flex items-center justify-center gap-2 bg-white/30 backdrop-blur-sm border border-white/50 text-blue-400 text-sm px-4 py-2 rounded-lg shadow hover:bg-white/40 transition transform hover:scale-105">
-        📥 Download de Todas as Fotos
-      </button>
+  <div class="container mx-auto px-4 py-6 flex flex-col sm:flex-row justify-center gap-4">
+    <!-- Download todas as fotos -->
+    <button onclick="downloadAll()" 
+            class="flex items-center justify-center gap-2 bg-white/30 backdrop-blur-sm border border-white/50 text-blue-400 text-sm px-4 py-2 rounded-lg shadow hover:bg-white/40 transition transform hover:scale-105">
+      📥 Download de Todas as Fotos
+    </button>
 
-      <!-- WhatsApp -->
-      <a href="https://wa.me/5521986685073" target="_blank" class="flex items-center justify-center gap-2 bg-white/30 backdrop-blur-sm border border-white/50 text-green-500 text-sm px-4 py-2 rounded-lg shadow hover:bg-white/40 transition transform hover:scale-105">
-        <!-- Ícone WhatsApp SVG -->
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48">
-          <path fill="#fff" d="M4.9,43.3l2.7-9.8C5.9,30.6,5,27.3,5,24C5,13.5,13.5,5,24,5c5.1,0,9.8,2,13.4,5.6 C41,14.2,43,18.9,43,24c0,10.5-8.5,19-19,19c0,0,0,0,0,0h0c-3.2,0-6.3-0.8-9.1-2.3L4.9,43.3z"></path>
-          <path fill="#fff" d="M4.9,43.8c-0.1,0-0.3-0.1-0.4-0.1c-0.1-0.1-0.2-0.3-0.1-0.5L7,33.5c-1.6-2.9-2.5-6.2-2.5-9.6 C4.5,13.2,13.3,4.5,24,4.5c5.2,0,10.1,2,13.8,5.7c3.7,3.7,5.7,8.6,5.7,13.8c0,10.7-8.7,19.5-19.5,19.5c-3.2,0-6.3-0.8-9.1-2.3 L5,43.8C5,43.8,4.9,43.8,4.9,43.8z"></path>
-          <path fill="#cfd8dc" d="M24,5c5.1,0,9.8,2,13.4,5.6C41,14.2,43,18.9,43,24c0,10.5-8.5,19-19,19h0c-3.2,0-6.3-0.8-9.1-2.3 L4.9,43.3l2.7-9.8C5.9,30.6,5,27.3,5,24C5,13.5,13.5,5,24,5 M24,43L24,43L24,43 M24,43L24,43L24,43 M24,4L24,4C13,4,4,13,4,24 c0,3.4,0.8,6.7,2.5,9.6L3.9,43c-0.1,0.3,0,0.7,0.3,1c0.2,0.2,0.4,0.3,0.7,0.3c0.1,0,0.2,0,0.3,0l9.7-2.5c2.8,1.5,6,2.2,9.2,2.2 c11,0,20-9,20-20c0-5.3-2.1-10.4-5.8-14.1C34.4,6.1,29.4,4,24,4L24,4z"></path>
-          <path fill="#40c351" d="M35.2,12.8c-3-3-6.9-4.6-11.2-4.6C15.3,8.2,8.2,15.3,8.2,24c0,3,0.8,5.9,2.4,8.4L11,33l-1.6,5.8 l6-1.6l0.6,0.3c2.4,1.4,5.2,2.2,8,2.2h0c8.7,0,15.8-7.1,15.8-15.8C39.8,19.8,38.2,15.8,35.2,12.8z"></path>
-          <path fill="#fff" fill-rule="evenodd" d="M19.3,16c-0.4-0.8-0.7-0.8-1.1-0.8c-0.3,0-0.6,0-0.9,0 s-0.8,0.1-1.3,0.6c-0.4,0.5-1.7,1.6-1.7,4s1.7,4.6,1.9,4.9s3.3,5.3,8.1,7.2c4,1.6,4.8,1.3,5.7,1.2c0.9-0.1,2.8-1.1,3.2-2.3 c0.4-1.1,0.4-2.1,0.3-2.3c-0.1-0.2-0.4-0.3-0.9-0.6s-2.8-1.4-3.2-1.5c-0.4-0.2-0.8-0.2-1.1,0.2c-0.3,0.5-1.2,1.5-1.5,1.9 c-0.3,0.3-0.6,0.4-1,0.1c-0.5-0.2-2-0.7-3.8-2.4c-1.4-1.3-2.4-2.8-2.6-3.3c-0.3-0.5,0-0.7,0.2-1c0.2-0.2,0.5-0.6,0.7-0.8 c0.2-0.3,0.3-0.5,0.5-0.8c0.2-0.3,0.1-0.6,0-0.8C20.6,19.3,19.7,17,19.3,16z" clip-rule="evenodd"></path>
-        </svg>
-        Entre em contato e faça seu orçamento
-      </a>
+    <!-- WhatsApp -->
+    <a href="https://wa.me/5521986685073" target="_blank" 
+      class="flex items-center justify-center gap-2 bg-white/30 backdrop-blur-sm border border-white/50 text-green-500 text-sm px-4 py-2 rounded-lg shadow hover:bg-white/40 transition transform hover:scale-105">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48">
+        <path fill="#fff" d="M4.9,43.3l2.7-9.8C5.9,30.6,5,27.3,5,24C5,13.5,13.5,5,24,5c5.1,0,9.8,2,13.4,5.6 C41,14.2,43,18.9,43,24c0,10.5-8.5,19-19,19c0,0,0,0,0,0h0c-3.2,0-6.3-0.8-9.1-2.3L4.9,43.3z"></path>
+        <path fill="#40c351" d="M35.2,12.8c-3-3-6.9-4.6-11.2-4.6C15.3,8.2,8.2,15.3,8.2,24c0,3,0.8,5.9,2.4,8.4L11,33l-1.6,5.8 l6-1.6l0.6,0.3c2.4,1.4,5.2,2.2,8,2.2h0c8.7,0,15.8-7.1,15.8-15.8C39.8,19.8,38.2,15.8,35.2,12.8z"></path>
+        <path fill="#fff" fill-rule="evenodd" d="M19.3,16c-0.4-0.8-0.7-0.8-1.1-0.8c-0.3,0-0.6,0-0.9,0 s-0.8,0.1-1.3,0.6c-0.4,0.5-1.7,1.6-1.7,4s1.7,4.6,1.9,4.9s3.3,5.3,8.1,7.2c4,1.6,4.8,1.3,5.7,1.2c0.9-0.1,2.8-1.1,3.2-2.3 c0.4-1.1,0.4-2.1,0.3-2.3c-0.1-0.2-0.4-0.3-0.9-0.6s-2.8-1.4-3.2-1.5c-0.4-0.2-0.8-0.2-1.1,0.2c-0.3,0.5-1.2,1.5-1.5,1.9 c-0.3,0.3-0.6,0.4-1,0.1c-0.5-0.2-2-0.7-3.8-2.4c-1.4-1.3-2.4-2.8-2.6-3.3c-0.3-0.5,0-0.7,0.2-1c0.2-0.2,0.5-0.6,0.7-0.8 c0.2-0.3,0.3-0.5,0.5-0.8c0.2-0.3,0.1-0.6,0-0.8C20.6,19.3,19.7,17,19.3,16z" clip-rule="evenodd"></path>
+      </svg>
+      Entre em contato e faça seu orçamento
+    </a>
 
-
-      <!-- Instagram -->
-      <a href="https://www.instagram.com/doceamor_fotografia" target="_blank" class="flex items-center justify-center gap-2 bg-white/30 backdrop-blur-sm border border-white/50 text-pink-500 text-sm px-4 py-2 rounded-lg shadow hover:bg-white/40 transition transform hover:scale-105">
-        <!-- SVG Instagram completo -->
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48">
-          <radialGradient id="yOrnnhliCrdS2gy~4tD8ma_Xy10Jcu1L2Su_gr1" cx="19.38" cy="42.035" r="44.899" gradientUnits="userSpaceOnUse">
-            <stop offset="0" stop-color="#fd5"></stop>
-            <stop offset=".328" stop-color="#ff543f"></stop>
-            <stop offset=".348" stop-color="#fc5245"></stop>
-            <stop offset=".504" stop-color="#e64771"></stop>
-            <stop offset=".643" stop-color="#d53e91"></stop>
-            <stop offset=".761" stop-color="#cc39a4"></stop>
-            <stop offset=".841" stop-color="#c837ab"></stop>
-          </radialGradient>
-          <path fill="url(#yOrnnhliCrdS2gy~4tD8ma_Xy10Jcu1L2Su_gr1)" d="M34.017,41.99l-20,0.019c-4.4,0.004-8.003-3.592-8.008-7.992l-0.019-20
-            c-0.004-4.4,3.592-8.003,7.992-8.008l20-0.019c4.4-0.004,8.003,3.592,8.008,7.992l0.019,20C42.014,38.383,38.417,41.986,34.017,41.99z"></path>
-          <radialGradient id="yOrnnhliCrdS2gy~4tD8mb_Xy10Jcu1L2Su_gr2" cx="11.786" cy="5.54" r="29.813" gradientTransform="matrix(1 0 0 .6663 0 1.849)" gradientUnits="userSpaceOnUse">
-            <stop offset="0" stop-color="#4168c9"></stop>
-            <stop offset=".999" stop-color="#4168c9" stop-opacity="0"></stop>
-          </radialGradient>
-          <path fill="url(#yOrnnhliCrdS2gy~4tD8mb_Xy10Jcu1L2Su_gr2)" d="M34.017,41.99l-20,0.019c-4.4,0.004-8.003-3.592-8.008-7.992l-0.019-20
-            c-0.004-4.4,3.592-8.003,7.992-8.008l20-0.019c4.4-0.004,8.003,3.592,8.008,7.992l0.019,20C42.014,38.383,38.417,41.986,34.017,41.99z"></path>
-          <path fill="#fff" d="M24,31c-3.859,0-7-3.14-7-7s3.141-7,7-7s7,3.14,7,7S27.859,31,24,31z M24,19c-2.757,0-5,2.243-5,5
-            s2.243,5,5,5s5-2.243,5-5S26.757,19,24,19z"></path>
-          <circle cx="31.5" cy="16.5" r="1.5" fill="#fff"></circle>
-          <path fill="#fff" d="M30,37H18c-3.859,0-7-3.14-7-7V18c0-3.86,3.141-7,7-7h12c3.859,0,7,3.14,7,7v12
-            C37,33.86,33.859,37,30,37z M18,13c-2.757,0-5,2.243-5,5v12c0,2.757,2.243,5,5,5h12c2.757,0,5-2.243,5-5V18c0-2.757-2.243-5-5-5H18z"></path>
-        </svg>
-        Instagram
-      </a>
-
-
-    </div>
-
+    <!-- Instagram -->
+    <a href="https://www.instagram.com/doceamor_fotografia" target="_blank" 
+      class="flex items-center justify-center gap-2 bg-white/30 backdrop-blur-sm border border-white/50 text-pink-500 text-sm px-4 py-2 rounded-lg shadow hover:bg-white/40 transition transform hover:scale-105">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48">
+        <radialGradient id="igGrad1" cx="19.38" cy="42.035" r="44.899" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#fd5"/>
+          <stop offset=".328" stop-color="#ff543f"/>
+          <stop offset=".348" stop-color="#fc5245"/>
+          <stop offset=".504" stop-color="#e64771"/>
+          <stop offset=".643" stop-color="#d53e91"/>
+          <stop offset=".761" stop-color="#cc39a4"/>
+          <stop offset=".841" stop-color="#c837ab"/>
+        </radialGradient>
+        <path fill="url(#igGrad1)" d="M34.017,41.99l-20,0.019c-4.4,0.004-8.003-3.592-8.008-7.992l-0.019-20 c-0.004-4.4,3.592-8.003,7.992-8.008l20-0.019c4.4-0.004,8.003,3.592,8.008,7.992l0.019,20C42.014,38.383,38.417,41.986,34.017,41.99z"/>
+        <path fill="#fff" d="M24,31c-3.859,0-7-3.14-7-7s3.141-7,7-7s7,3.14,7,7S27.859,31,24,31z M24,19c-2.757,0-5,2.243-5,5 s2.243,5,5,5s5-2.243,5-5S26.757,19,24,19z"/>
+        <circle cx="31.5" cy="16.5" r="1.5" fill="#fff"></circle>
+        <path fill="#fff" d="M30,37H18c-3.859,0-7-3.14-7-7V18c0-3.86,3.141-7,7-7h12c3.859,0,7,3.14,7,7v12 C37,33.86,33.859,37,30,37z M18,13c-2.757,0-5,2.243-5,5v12c0,2.757,2.243,5,5,5h12c2.757,0,5-2.243,5-5V18c0-2.757-2.243-5-5-5H18z"/>
+      </svg>
+      Instagram
+    </a>
+  </div>
 
   <!-- Galeria -->
   <main class="container mx-auto px-4 pb-10">
@@ -126,10 +107,7 @@
 
   <!-- Modal de escolha de resolução -->
   <div id="resolution-modal" class="hidden fixed inset-0 flex items-center justify-center z-50 p-4">
-    <!-- Fundo semi-transparente com blur -->
     <div class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
-
-    <!-- Conteúdo do modal -->
     <div class="relative bg-white/50 backdrop-blur-lg rounded-xl p-4 text-center space-y-3 max-w-xs w-full shadow-lg fade-in">
       <h2 class="text-base font-semibold text-white">Escolha a resolução</h2>
       <div class="flex justify-around">
@@ -145,11 +123,15 @@
   </div>
 
   <script>
-    // Array de imagens de 001 a 043
+    // Array de imagens com links do S3
     const images = [];
     for (let i = 1; i <= 43; i++) {
-      const num = i.toString().padStart(3, '0'); // garante 001, 002, ... 043
-      images.push({ name: `Maria-8-anos-${num}.jpg` });
+      const num = i.toString().padStart(3, '0');
+      images.push({ 
+        name: `Maria-8-anos-${num}.jpg`,
+        baixa: `https://doceamorfotografia.s3.sa-east-1.amazonaws.com/maria-8-anos/baixa/Maria-8-anos-${num}.jpg`,
+        alta: `https://doceamorfotografia.s3.sa-east-1.amazonaws.com/maria-8-anos/alta/Maria-8-anos-${num}.jpg`
+      });
     }
 
     const gallery = document.getElementById("gallery");
@@ -161,7 +143,7 @@
       div.className = "relative group border rounded-lg overflow-hidden shadow cursor-pointer transition-transform hover:scale-105";
 
       div.innerHTML = `
-        <img src="fotos/baixa/${img.name}" alt="Foto ${i+1}" 
+        <img src="${img.baixa}" alt="Foto ${i+1}" 
              class="w-full h-48 sm:h-56 md:h-60 object-cover group-hover:scale-105 transition-transform duration-300"/>
         <div class="absolute bottom-2 right-2">
           <button onclick="event.stopPropagation(); openResolutionModal(${i})" 
@@ -177,7 +159,7 @@
     // Lightbox
     function openLightbox(index) {
       currentIndex = index;
-      document.getElementById("lightbox-img").src = `fotos/alta/${images[currentIndex].name}`;
+      document.getElementById("lightbox-img").src = images[currentIndex].alta;
       document.getElementById("lightbox").classList.remove("hidden");
     }
     function closeLightbox() {
@@ -191,11 +173,11 @@
     }
     function prevImage() {
       currentIndex = (currentIndex - 1 + images.length) % images.length;
-      document.getElementById("lightbox-img").src = `fotos/alta/${images[currentIndex].name}`;
+      document.getElementById("lightbox-img").src = images[currentIndex].alta;
     }
     function nextImage() {
       currentIndex = (currentIndex + 1) % images.length;
-      document.getElementById("lightbox-img").src = `fotos/alta/${images[currentIndex].name}`;
+      document.getElementById("lightbox-img").src = images[currentIndex].alta;
     }
 
     // Modal de resolução
@@ -215,20 +197,18 @@
     }
 
     document.getElementById("btn-baixa").addEventListener("click", () => {
-      downloadImage(`fotos/baixa/${images[currentIndex].name}`, images[currentIndex].name);
+      downloadImage(images[currentIndex].baixa, images[currentIndex].name);
       closeResolutionModal();
     });
     document.getElementById("btn-alta").addEventListener("click", () => {
-      downloadImage(`fotos/alta/${images[currentIndex].name}`, images[currentIndex].name);
+      downloadImage(images[currentIndex].alta, images[currentIndex].name);
       closeResolutionModal();
     });
 
     // Download lightbox
     function downloadLightbox(resolution) {
-      const folder = resolution === 'alta' ? 'alta' : 'baixa';
-      const filename = images[currentIndex].name;
-      const url = `fotos/${folder}/${filename}`;
-      downloadImage(url, filename);
+      const url = resolution === 'alta' ? images[currentIndex].alta : images[currentIndex].baixa;
+      downloadImage(url, images[currentIndex].name);
     }
 
     // Download unitário
@@ -245,12 +225,10 @@
       const folderAlta = zip.folder("alta");
 
       for (let i = 0; i < images.length; i++) {
-        const resBaixa = await fetch(`fotos/baixa/${images[i].name}`);
-        const blobBaixa = await resBaixa.blob();
+        const blobBaixa = await fetch(images[i].baixa).then(res => res.blob());
         folderBaixa.file(images[i].name, blobBaixa);
 
-        const resAlta = await fetch(`fotos/alta/${images[i].name}`);
-        const blobAlta = await resAlta.blob();
+        const blobAlta = await fetch(images[i].alta).then(res => res.blob());
         folderAlta.file(images[i].name, blobAlta);
       }
 
