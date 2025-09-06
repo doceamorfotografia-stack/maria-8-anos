@@ -187,7 +187,14 @@
     // Download direto
     function downloadLightbox(resolution) {
       const url = resolution === 'alta' ? images[currentIndex].alta : images[currentIndex].baixa;
-      const filename = images[currentIndex].name;
+
+      // Definir o nome do arquivo dinamicamente
+      let filename = images[currentIndex].name;
+      if (resolution === 'baixa') {
+        filename = filename.replace('.jpg', '-baixa.jpg');
+      } else {
+        filename = filename.replace('.jpg', '-alta.jpg');
+      }
 
       fetch(url, { mode: 'cors' })
         .then(res => {
@@ -206,6 +213,7 @@
         })
         .catch(err => alert('Erro ao baixar a imagem: ' + err));
     }
+
 
     // Event listeners do modal
     document.getElementById("btn-baixa").addEventListener("click", () => {
